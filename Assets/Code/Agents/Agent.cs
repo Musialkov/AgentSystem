@@ -10,7 +10,7 @@ namespace Code.Agents
         [SerializeField] private float speed;
         private string _agentGUID;
 
-        private void Start()
+        public void Start()
         {
             _agentGUID = Guid.NewGuid().ToString();
             MoveToRandomPosition();
