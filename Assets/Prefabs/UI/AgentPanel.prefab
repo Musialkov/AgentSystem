@@ -554,7 +554,6 @@ GameObject:
   - component: {fileID: 5540468588649110569}
   - component: {fileID: 5540468588649110550}
   - component: {fileID: 5540468588649110551}
-  - component: {fileID: 5540468588649110568}
   m_Layer: 5
   m_Name: RemoveAgentButton
   m_TagString: Untagged
@@ -665,19 +664,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5540468588649110568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5540468588649110549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f61c4c92fec62c242a94ac24af8c0807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 5540468588649110551}
 --- !u!1 &5540468588935583153
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,7 +676,6 @@ GameObject:
   - component: {fileID: 5540468588935583156}
   - component: {fileID: 5540468588935583157}
   - component: {fileID: 5540468588935583154}
-  - component: {fileID: 5540468588935583155}
   m_Layer: 5
   m_Name: AddAgentButton
   m_TagString: Untagged
@@ -801,21 +786,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5540468588935583155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5540468588935583153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 166e09e7e8f6df94c8cfa9d3030e8233, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  addAgentButton: {fileID: 0}
-  removeRandomAgentButton: {fileID: 0}
-  removeAllAgentsButton: {fileID: 0}
 --- !u!1 &5540468589117311887
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,7 +863,6 @@ GameObject:
   - component: {fileID: 5540468589545533301}
   - component: {fileID: 5540468589545533298}
   - component: {fileID: 5540468589545533299}
-  - component: {fileID: 5540468589545533300}
   m_Layer: 5
   m_Name: RemoveAllAgentButton
   m_TagString: Untagged
@@ -1004,19 +973,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5540468589545533300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5540468589545533297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f275e12649e769f48ade867da903e611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 5540468589545533299}
 --- !u!1 &5540468589913047140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,6 +985,7 @@ GameObject:
   - component: {fileID: 5540468589913047142}
   - component: {fileID: 3797835734612227652}
   - component: {fileID: 6776382590223968202}
+  - component: {fileID: 1714589738317969273}
   m_Layer: 5
   m_Name: AgentPanel
   m_TagString: Untagged
@@ -1116,6 +1073,20 @@ MonoBehaviour:
   addAgentButton: {fileID: 5540468588935583154}
   removeRandomAgentButton: {fileID: 5540468588649110551}
   removeAllAgentsButton: {fileID: 5540468589545533299}
+--- !u!114 &1714589738317969273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5540468589913047140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &5540468589949806415
 GameObject:
   m_ObjectHideFlags: 0

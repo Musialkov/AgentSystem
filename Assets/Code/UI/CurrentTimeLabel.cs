@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Code.Core;
+using TMPro;
 using UnityEngine;
 
-public class CurrentTimeLabel : MonoBehaviour
+namespace Code.UI
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CurrentTimeLabel : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private TextMeshProUGUI speedText;
 
-    // Update is called once per frame
-    void Update()
-    {
+        private ITickService _tickService = TickService.Instance;
         
+        private void Start()
+        {
+            _tickService.OnSpeedChange += UpdateLabel;
+        }
+
+        private void UpdateLabel(float currentSpeed)
+        {
+            speedText.text = currentSpeed.ToString();
+        }
     }
 }

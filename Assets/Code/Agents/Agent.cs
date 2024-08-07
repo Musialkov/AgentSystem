@@ -12,7 +12,10 @@ namespace Code.Agents
         private float _speed;
         private string _agentGUID;
         private Color _agentColor;
+        private Tween _currentRotationTween;
         private Tween _currentMoveTween;
+        private Vector3 _targetPosition;
+        private Quaternion _targetRotation;
 
         public Action<string, Color> onReachDestination;
 
@@ -23,28 +26,66 @@ namespace Code.Agents
             agentMarker.material.color = _agentColor;
         }
 
-        public void StartMovement(float newSpeed)
+        private void OnDestroy()
+        {
+            DOTween.Kill(transform);
+        }
+
+        public void StartMovement(float newSpeed, bool isPaused)
         {
             if (newSpeed <= 0) return;
             _speed = newSpeed;
             
             MoveToRandomPosition();
+            if(isPaused) PauseMovement();
         }
 
+        public void PauseMovement()
+        {
+            _currentRotationTween.Pause();
+            _currentMoveTween.Pause();
+        }
+        
+        public void ResumeMovement()
+        {
+            _currentRotationTween.Play();
+            _currentMoveTween.Play();
+        }
+
+        public void ChangeMovementSpeed(float newSpeed, bool isPaused)
+        {
+            if (newSpeed <= 0) return;
+
+            _speed = newSpeed;
+            var position = transform.position;
+            float remainingDistance = Vector3.Distance(position, _targetPosition);
+            Vector3 direction = (_targetPosition - position).normalized;
+            float newTime = remainingDistance / _speed;
+            
+            _targetRotation = Quaternion.LookRotation(direction);
+            
+            _currentMoveTween.Kill();
+            _currentMoveTween = transform.DOMove(_targetPosition, newTime).OnComplete(OnDestinationReached).Play();
+            _currentRotationTween.Kill();
+            _currentRotationTween = transform.DORotateQuaternion(_targetRotation, 0.5f);
+            
+            if(isPaused) PauseMovement();
+        }
+        
         private void MoveToRandomPosition()
         {
             if (_speed <= 0) return;
             
-            var targetPosition = GetRandomPosition();
+            _targetPosition = GetRandomPosition();
             var position = transform.position;
-            var distance = Vector3.Distance(position, targetPosition);
+            var distance = Vector3.Distance(position, _targetPosition);
             var time = distance / _speed;
             
-            Vector3 direction = (targetPosition - position).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            Vector3 direction = (_targetPosition - position).normalized;
+            _targetRotation = Quaternion.LookRotation(direction);
             
-            transform.DORotateQuaternion(targetRotation, 0.5f);
-            _currentMoveTween = transform.DOMove(targetPosition, time).OnComplete(OnDestinationReached);
+            _currentRotationTween = transform.DORotateQuaternion(_targetRotation, 0.5f);
+            _currentMoveTween = transform.DOMove(_targetPosition, time).OnComplete(OnDestinationReached);
         }
 
         private Vector3 GetRandomPosition()

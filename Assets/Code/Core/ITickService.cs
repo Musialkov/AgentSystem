@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class ITickService : MonoBehaviour
+namespace Code.Core
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface ITickService
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public Action OnRequestPause { get; set; }
+        public Action OnRequestResume { get; set; }
+        public Action OnIncreaseSpeed { get; set; }
+        public Action OnDecreaseSpeed { get; set; }
+        public Action<float> OnSpeedChange { get; set; }
+        public void RequestPause();
+        public void RequestResume();
+        public void IncreaseSpeed();
+        public void DecreaseSpeed();
+        public void RegisterAgentsSpeedChange(float agentsSpeed);
     }
 }

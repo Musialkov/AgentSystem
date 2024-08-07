@@ -19,5 +19,12 @@ namespace Code.UI
             removeRandomAgentButton.onClick.AddListener(_agentService.RequestRandomAgentDespawn);
             removeAllAgentsButton.onClick.AddListener(_agentService.RequestAllAgentDespawn);
         }
+
+        private void OnDestroy()
+        {
+            addAgentButton.onClick.RemoveAllListeners();
+            removeRandomAgentButton.onClick.RemoveAllListeners();
+            removeAllAgentsButton.onClick.RemoveAllListeners();
+        }
     }
 }
