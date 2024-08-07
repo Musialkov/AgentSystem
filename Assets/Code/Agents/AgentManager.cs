@@ -9,6 +9,7 @@ namespace Code.Agents
     public class AgentManager : MonoBehaviour
     {
         [SerializeField] private GameObject agentPrefab;
+        [SerializeField] private float agentSpeed = 5;
         
         private IAgentService _agentService = AgentService.Instance;
         private List<Agent> _agents = new List<Agent>();
@@ -29,7 +30,10 @@ namespace Code.Agents
 
         private void SpawnAgent()
         {
-            GameObject agentObject = Instantiate(agentPrefab);
+            Agent agentObject = Instantiate(agentPrefab).GetComponent<Agent>();
+            agentObject.onReachDestination += RegisterAgentReachDestination;
+            agentObject.StartMovement(agentSpeed);
+            
             _agents.Add(agentObject.GetComponent<Agent>());
             _agentService.RegisterAgentsNumberChange(_agents.Count);
         }
@@ -54,6 +58,11 @@ namespace Code.Agents
             }
             _agents.Clear();
             _agentService.RegisterAgentsNumberChange(_agents.Count);
+        }
+
+        private void RegisterAgentReachDestination(string agentGUID, Color agentColor)
+        {
+            _agentService.RegisterAgentReachDestination(agentGUID, agentColor);
         }
     }
 }

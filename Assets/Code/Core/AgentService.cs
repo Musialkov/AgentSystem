@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Code.Core
@@ -16,6 +17,7 @@ namespace Code.Core
         public Action OnRequestRandomAgentDespawn { get; set; }
         public Action OnRequestAllAgentDespawn { get; set; }
         public Action<int> OnAgentsNumberChange { get; set; }
+        public Action<string, Color> OnAgentReachDestination { get; set; }
         
 
         public void RequestAgentSpawn()
@@ -36,6 +38,11 @@ namespace Code.Core
         public void RegisterAgentsNumberChange(int agentsNumber)
         {
             OnAgentsNumberChange?.Invoke(agentsNumber);
+        }
+
+        public void RegisterAgentReachDestination(string agentGUID, Color agentColor)
+        {
+            OnAgentReachDestination?.Invoke(agentGUID, agentColor);
         }
     }
 }
