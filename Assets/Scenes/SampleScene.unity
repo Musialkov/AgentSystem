@@ -1634,36 +1634,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6940941721144187872, guid: 6921e919af83c2b458e1b5c62de7d072,
-        type: 3}
-      propertyPath: agentSpeed
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6940941721144187872, guid: 6921e919af83c2b458e1b5c62de7d072,
-        type: 3}
-      propertyPath: maxAgentSpeed
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6940941721144187872, guid: 6921e919af83c2b458e1b5c62de7d072,
-        type: 3}
-      propertyPath: speedValueChange
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6940941721144187872, guid: 6921e919af83c2b458e1b5c62de7d072,
-        type: 3}
-      propertyPath: agentSpawnPoint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6940941721144187872, guid: 6921e919af83c2b458e1b5c62de7d072,
-        type: 3}
-      propertyPath: agentSpeedRange.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6940941721144187872, guid: 6921e919af83c2b458e1b5c62de7d072,
-        type: 3}
-      propertyPath: agentSpeedRange.y
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 6940941721144187873, guid: 6921e919af83c2b458e1b5c62de7d072,
         type: 3}
       propertyPath: m_RootOrder
