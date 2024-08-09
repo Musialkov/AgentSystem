@@ -13,7 +13,7 @@ namespace Code.UI
         
         private IAgentService _agentService = AgentService.Instance;
 
-        private void Start()
+        private void Awake()
         {
             addAgentButton.onClick.AddListener(_agentService.RequestAgentSpawn);
             removeRandomAgentButton.onClick.AddListener(_agentService.RequestRandomAgentDespawn);

@@ -13,7 +13,7 @@ namespace Code.UI
 
         private IAgentService _agentService = AgentService.Instance;
 
-        private void Start()
+        private void Awake()
         {
             _agentService.OnAgentsNumberChange += UpdateLabel;
             _agentService.OnAgentReachDestination += UpdateAgentMessage;

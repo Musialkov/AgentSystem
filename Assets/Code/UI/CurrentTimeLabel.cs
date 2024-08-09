@@ -11,7 +11,7 @@ namespace Code.UI
 
         private ITickService _tickService = TickService.Instance;
         
-        private void Start()
+        private void Awake()
         {
             _tickService.OnSpeedChange += UpdateLabel;
         }

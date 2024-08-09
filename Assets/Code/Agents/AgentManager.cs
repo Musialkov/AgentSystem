@@ -19,7 +19,7 @@ namespace Code.Agents
         private ITickService _tickService = TickService.Instance;
         private List<Agent> _agents = new List<Agent>();
 
-        private void Start()
+        private void Awake()
         {
             _agentService.OnRequestAgentSpawn += SpawnAgent;
             _agentService.OnRequestRandomAgentDespawn += RemoveRandomAgent;
@@ -29,7 +29,10 @@ namespace Code.Agents
             _tickService.OnRequestResume += ResumeAgents;
             _tickService.OnIncreaseSpeed += IncreaseAgentSpeed;
             _tickService.OnDecreaseSpeed += DecreaseAgentSpeed;
+        }
 
+        private void Start()
+        {
             agentSpeed = Math.Clamp(agentSpeed, agentSpeedRange.x, agentSpeedRange.y);
             _tickService.RegisterAgentsSpeedChange(agentSpeed);
         }

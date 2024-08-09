@@ -13,7 +13,7 @@ namespace Code.UI
 
         private ITickService _tickService = TickService.Instance;
 
-        private void Start()
+        private void Awake()
         {
             pauseButton.onClick.AddListener(_tickService.RequestPause);
             resumeButton.onClick.AddListener(_tickService.RequestResume);
