@@ -7,8 +7,6 @@ namespace Code.Agents
 {
     public class Agent : MonoBehaviour
     {
-        [SerializeField] private MeshRenderer agentMarker;
-        
         private float _speed;
         private string _agentGUID;
         private Color _agentColor;
@@ -19,22 +17,25 @@ namespace Code.Agents
 
         public Action<string, Color> onReachDestination;
 
-        public void Start()
+        public void OnEnable()
         {
             _agentGUID = Guid.NewGuid().ToString();
             _agentColor = GetRandomColor();
-            agentMarker.material.color = _agentColor;
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
-            DOTween.Kill(transform);
+            transform.position = new Vector3(0, 0, 0);
+            KillTweens();
         }
 
-        public void StartMovement(float newSpeed, bool isPaused)
+        public void StartMovement(Vector3 spawnPoint, float newSpeed, bool isPaused)
         {
-            if (newSpeed <= 0) return;
+            if (!IsValidSpeed(newSpeed)) return;
             _speed = newSpeed;
+            
+            transform.position = spawnPoint;
+            transform.rotation = Quaternion.identity;
             
             MoveToRandomPosition();
             if(isPaused) PauseMovement();
@@ -42,50 +43,52 @@ namespace Code.Agents
 
         public void PauseMovement()
         {
-            _currentRotationTween.Pause();
-            _currentMoveTween.Pause();
+            _currentRotationTween?.Pause();
+            _currentMoveTween?.Pause();
         }
         
         public void ResumeMovement()
         {
-            _currentRotationTween.Play();
-            _currentMoveTween.Play();
+            _currentRotationTween?.Play();
+            _currentMoveTween?.Play();
         }
 
         public void ChangeMovementSpeed(float newSpeed, bool isPaused)
         {
-            if (newSpeed <= 0) return;
+            if (!IsValidSpeed(newSpeed)) return;
 
             _speed = newSpeed;
-            var position = transform.position;
-            float remainingDistance = Vector3.Distance(position, _targetPosition);
-            Vector3 direction = (_targetPosition - position).normalized;
-            float newTime = remainingDistance / _speed;
-            
-            _targetRotation = Quaternion.LookRotation(direction);
-            
-            _currentMoveTween.Kill();
-            _currentMoveTween = transform.DOMove(_targetPosition, newTime).OnComplete(OnDestinationReached).Play();
-            _currentRotationTween.Kill();
-            _currentRotationTween = transform.DORotateQuaternion(_targetRotation, 0.5f);
+            UpdateMovement();
             
             if(isPaused) PauseMovement();
         }
-        
+
         private void MoveToRandomPosition()
         {
-            if (_speed <= 0) return;
+            if (!IsValidSpeed(_speed)) return;
             
             _targetPosition = GetRandomPosition();
+            UpdateMovement();
+        }
+
+        private bool IsValidSpeed(float speed)
+        {
+            return speed > 0;
+        }
+
+        private void UpdateMovement()
+        {
+            KillTweens();
+
             var position = transform.position;
-            var distance = Vector3.Distance(position, _targetPosition);
-            var time = distance / _speed;
-            
             Vector3 direction = (_targetPosition - position).normalized;
             _targetRotation = Quaternion.LookRotation(direction);
             
+            float remainingDistance = Vector3.Distance(position, _targetPosition);
+            float movementTime = remainingDistance / _speed;
+
             _currentRotationTween = transform.DORotateQuaternion(_targetRotation, 0.5f);
-            _currentMoveTween = transform.DOMove(_targetPosition, time).OnComplete(OnDestinationReached);
+            _currentMoveTween = transform.DOMove(_targetPosition, movementTime).OnComplete(OnDestinationReached);
         }
 
         private Vector3 GetRandomPosition()
@@ -103,8 +106,13 @@ namespace Code.Agents
         
         private Color GetRandomColor()
         {
-            Color randomColor = new Color(Random.value, Random.value, Random.value);
-            return randomColor;
+            return new Color(Random.value, Random.value, Random.value);
+        }
+
+        private void KillTweens()
+        {
+            _currentRotationTween?.Kill();
+            _currentMoveTween?.Kill();
         }
     }
 }
