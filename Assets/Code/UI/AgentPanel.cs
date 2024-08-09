@@ -1,8 +1,6 @@
-using System;
 using Code.Core;
 using TMPro;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Code.UI
 {

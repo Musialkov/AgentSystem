@@ -1,4 +1,3 @@
-using System;
 using Code.Core;
 using UnityEngine;
 using UnityEngine.UI;
