@@ -1637,7 +1637,7 @@ PrefabInstance:
     - target: {fileID: 6940941721144187872, guid: 6921e919af83c2b458e1b5c62de7d072,
         type: 3}
       propertyPath: agentSpeed
-      value: 677
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6940941721144187872, guid: 6921e919af83c2b458e1b5c62de7d072,
         type: 3}
@@ -1651,13 +1651,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6940941721144187872, guid: 6921e919af83c2b458e1b5c62de7d072,
         type: 3}
+      propertyPath: agentSpawnPoint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940941721144187872, guid: 6921e919af83c2b458e1b5c62de7d072,
+        type: 3}
       propertyPath: agentSpeedRange.x
-      value: 15.2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6940941721144187872, guid: 6921e919af83c2b458e1b5c62de7d072,
         type: 3}
       propertyPath: agentSpeedRange.y
-      value: 34.83704
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6940941721144187873, guid: 6921e919af83c2b458e1b5c62de7d072,
         type: 3}

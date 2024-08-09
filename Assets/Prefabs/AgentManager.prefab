@@ -46,4 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agentPrefab: {fileID: 5667244658882303780, guid: 540797a110767fa4c97fcf390982c4da,
     type: 3}
-  agentSpeed: 5
+  agentSpeed: 1
+  speedValueChange: 2
+  agentSpeedRange: {x: 5, y: 50}
+  agentSpawnPoint: {x: 0, y: 0, z: 0}
+  poolSize: 15

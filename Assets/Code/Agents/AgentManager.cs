@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Code.Core;
-using GD.MinMaxSlider;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,11 +9,11 @@ namespace Code.Agents
     public class AgentManager : MonoBehaviour
     {
         [SerializeField] private GameObject agentPrefab;
-        [SerializeField] private float agentSpeed = 5;
+        [SerializeField, Min(1)] private float agentSpeed = 5;
         [SerializeField, Range(1, 5)] private float speedValueChange = 2;
-        [SerializeField, MinMaxSlider(1,50) ] private Vector2 agentSpeedRange = new Vector2(1,50);
+        [SerializeField, ] private Vector2 agentSpeedRange = new Vector2(1,50);
         [SerializeField] private Vector3 agentSpawnPoint;
-        [SerializeField] private int poolSize = 10;
+        [SerializeField, Min(1)] private int poolSize = 10;
 
         private bool _isPaused;
         private IAgentService _agentService = AgentService.Instance;
